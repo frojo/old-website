@@ -37,6 +37,11 @@ class ProjectThumbnail extends React.Component {
   }
 }
 
+function ProjectThumbnailList(props) {
+
+
+}
+
 
 function App(props) {
   return (
