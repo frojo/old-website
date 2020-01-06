@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Routes from './routes';
 
 function formatName(user) {
   return user.first_name + ' ' + user.last_name
@@ -24,34 +25,40 @@ function ProjectPage(props) {
   return <div>this project is {props.name}!</div>;
 }
 
-class ProjectThumbnail extends React.Component {
-  render () {
-    return (
-      <a href="/poop/poop">
-	<img 
-      	  src={this.props.url}
-      	  alt={this.props.title}
-      	/>
-      </a>
-    )
-  }
+
+// function ProjectThumbnailList(props) {
+// 
+// 
+// }
+
+function Name(props) {
+  return <b>francisco rojo</b>;
 }
 
-function ProjectThumbnailList(props) {
-
-
+function InfoButton(props) {
+  return <a href="info">info</a>;
 }
 
+function AllProjectsButton(props) {
+  return <a href="complete-works">work</a>;
+}
+
+function NavBar(props) {
+  return (
+    <div>
+      <Name />
+      <AllProjectsButton />
+      <InfoButton />
+    </div>
+  );
+}
 
 function App(props) {
   return (
-    <div>
-      <h1>francisco rojo</h1>
-      <div>
-	<ProjectThumbnail url='poop' title='what do you wish you could say?' />
-	<ProjectThumbnail url='poop' title='a summer afternoon in bloomfield' />
-      </div>
-    </div>
+   <div>
+    <NavBar />
+    <Routes />
+   </div>
   );
 }
 
@@ -59,10 +66,3 @@ ReactDOM.render(
   <App />,
   document.getElementById('root')
 );
-
-
-
-
-
-
-
