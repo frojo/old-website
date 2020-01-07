@@ -13,7 +13,7 @@ const projects = [
 ];
 
 function ProjectThumbnail(props) {
-  return <img src={props.image_path} />;
+  return <img className='project-thumbnail' src={props.image_path} />;
 }
 
 function SelectedWorks(props) {

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Routes from './routes';
+import './index.css';
 
 function formatName(user) {
   return user.first_name + ' ' + user.last_name

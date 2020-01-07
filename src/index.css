@@ -1,4 +1,10 @@
 
 body {
-	font: 36px;
+	font: 128px;
 }
+
+.project-thumbnail {
+  width: 300px;
+  height: auto;
+}
+
