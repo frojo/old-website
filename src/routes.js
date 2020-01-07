@@ -3,8 +3,8 @@ import {BrowserRouter as Router,
 	Switch,
 	Route
 } from 'react-router-dom';
-import Info from './info';
-import SelectedWorks from './selected-works';
+import Info from './pages/info';
+import SelectedWorks from './pages/selected-works';
 
 
 function Routes(props) {

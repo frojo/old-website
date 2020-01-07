@@ -21,18 +21,9 @@ function Project(props) {
   return <div>this project is {props.name}!</div>;
 }
 
-function ProjectPage(props) {
-  return <div>this project is {props.name}!</div>;
-}
-
-
-// function ProjectThumbnailList(props) {
-// 
-// 
-// }
 
 function Name(props) {
-  return <b>francisco rojo</b>;
+  return <a href="/">francisco rojo</a>;
 }
 
 function InfoButton(props) {
