@@ -1,6 +1,12 @@
 
 body {
-	font: 128px;
+  font: 32px;
+}
+
+.project-thumb-container {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
 }
 
 .project-thumb {

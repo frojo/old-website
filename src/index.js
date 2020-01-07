@@ -31,17 +31,17 @@ function InfoButton(props) {
   return <a href="info">info</a>;
 }
 
-function AllProjectsButton(props) {
-  return <a href="complete-works">work</a>;
+function SelectedWorksButton(props) {
+  return <a href="selected-works">work</a>;
 }
 
 function NavBar(props) {
   return (
-    <div>
+    <header>
       <Name />
-      <AllProjectsButton />
+      <SelectedWorksButton />
       <InfoButton />
-    </div>
+    </header>
   );
 }
 

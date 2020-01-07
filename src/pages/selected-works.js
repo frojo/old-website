@@ -12,18 +12,28 @@ const projects = [
   }
 ];
 
-function ProjectThumbnail(props) {
+function ProjectThumb(props) {
   return <img className='project-thumb' src={props.image_path} alt={props.alt}/>;
 }
 
-function SelectedWorks(props) {
+function ProjectList(props) {
   // const projects = props.projects
   const list_items = projects.map((project) =>
     <li>
-      <ProjectThumbnail image_path={project.image_path} alt={project.name} />
+      <ProjectThumb image_path={project.image_path} alt={project.name} />
     </li>
   );
-  return <ul>{list_items}</ul>;
+  return <ul className='project-thumb-container'>{list_items}</ul>;
+
+}
+
+function SelectedWorks(props) {
+  return(
+    <div>
+      <h2>selected works</h2>
+      <ProjectList />
+    </div>
+  );
 }
 export default SelectedWorks;
 
