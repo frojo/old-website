@@ -5,6 +5,8 @@ import {BrowserRouter as Router,
 } from 'react-router-dom';
 import Info from './pages/info';
 import SelectedWorks from './pages/selected-works';
+import ProjectPage from './pages/project';
+import Secrets from './projects';
 
 
 function Routes(props) {
@@ -14,6 +16,11 @@ function Routes(props) {
 	<Route path='/info'>
 	  <Info />
 	</Route>
+
+	<Route path='/wdywycs'>
+	  <Secrets />
+	</Route>
+
 	<Route path='/'>
 	  <SelectedWorks />
 	</Route>

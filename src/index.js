@@ -24,23 +24,33 @@ function Project(props) {
 
 
 function Name(props) {
-  return <a href="/">francisco rojo</a>;
+  return <a className='navbar-name' href="/">francisco rojo</a>;
 }
 
+
 function InfoButton(props) {
-  return <a href="info">info</a>;
+  return <a className='navbar-item' href="info">info</a>;
 }
 
 function SelectedWorksButton(props) {
-  return <a href="selected-works">work</a>;
+  return <a className='navbar-item' href="selected-works">work</a>;
+}
+
+function Menu(props) {
+  return (
+    <div className='navbar-menu'>
+      <SelectedWorksButton />
+      <InfoButton />
+    </div>
+  )
+  
 }
 
 function NavBar(props) {
   return (
-    <header>
+    <header className='navbar'>
       <Name />
-      <SelectedWorksButton />
-      <InfoButton />
+      <Menu />
     </header>
   );
 }

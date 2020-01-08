@@ -1,6 +1,29 @@
 
 body {
-  font: 32px;
+  font-family: 'Roboto', monospace;
+}
+
+.navbar {
+}
+
+.navbar-name {
+  font-size: 32px;
+  text-align: left;
+  display: inline;
+
+}
+
+.navbar-menu {
+  margin-left: 8px;
+  margin-right: 8px;
+  align: right;
+  display: inline;
+}
+
+.navbar-item {
+  margin-left: 8px;
+  margin-right: 8px;
+  
 }
 
 .project-thumb-container {
@@ -11,6 +34,11 @@ body {
 
 .project-thumb {
   height: 200px;
+  width: auto;
+}
+
+.project-image {
+  height: 400px;
   width: auto;
 }
 

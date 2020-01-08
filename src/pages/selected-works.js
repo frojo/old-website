@@ -6,12 +6,14 @@ const projects = [
   {
     id: 'wdywycs',
     name: 'what do you wish you could say?',
-    image_path: '/images/wdywycs-cover.jpg'
+    image_path: '/images/wdywycs-cover.jpg',
+    link: '/wdywycs',
   },
   {
     id: 'bloomfield',
     name: 'a summer afternoon in bloomfield',
-    image_path: '/images/bloomfield-cover.png'
+    image_path: '/images/bloomfield-cover.png',
+    link: 'https://frojo.itch.io/a-summer-afternoon-in-bloomfield',
   }
 ]
 
@@ -26,9 +28,9 @@ function ProjectList(props) {
   // const projects = props.projects
   const list_items = projects.map((project) =>
     <li>
-      <Link to={'/work/' + project.id}>
+      <a href={project.link}>
 	<ProjectThumb image_path={project.image_path} alt={project.name} />
-      </Link>
+      </a>
     </li>
   )
   return <ul className='project-thumb-container'>{list_items}</ul>
