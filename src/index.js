@@ -38,10 +38,10 @@ function SelectedWorksButton(props) {
 
 function Menu(props) {
   return (
-    <div className='navbar-menu'>
+    <span className='navbar-menu'>
       <SelectedWorksButton />
       <InfoButton />
-    </div>
+    </span>
   )
   
 }

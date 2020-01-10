@@ -8,22 +8,18 @@ body {
 
 .navbar-name {
   font-size: 32px;
-  text-align: left;
-  display: inline;
+  /* display: inline; */
 
 }
 
 .navbar-menu {
-  margin-left: 8px;
-  margin-right: 8px;
-  align: right;
-  display: inline;
+  /* display: inline; */
+  
 }
 
 .navbar-item {
   margin-left: 8px;
   margin-right: 8px;
-  
 }
 
 .project-thumb-container {
