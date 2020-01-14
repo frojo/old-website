@@ -6,7 +6,7 @@ function Secrets(props) {
     <div>
       <h1>what do you wish you could say?</h1>
       <img className='project-image' src='/images/wdywycs-cover.jpg' />
-      <p>this is the description of the project</p>
+      <p>this is the description of tha project</p>
     </div>
   )
 }
