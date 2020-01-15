@@ -14,6 +14,7 @@ body {
 
 .navbar-menu {
   /* display: inline; */
+  align: right;
   
 }
 
@@ -33,8 +34,12 @@ body {
   width: auto;
 }
 
-.project-image {
+.project-main-image {
   height: 400px;
   width: auto;
 }
 
+.project-image {
+  height: 300px;
+  width: auto;
+}

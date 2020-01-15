@@ -29,7 +29,7 @@ function Name(props) {
 
 
 function InfoButton(props) {
-  return <a className='navbar-item' href="info">info</a>;
+  return <a className='navbar-item' href="info">about</a>;
 }
 
 function SelectedWorksButton(props) {
@@ -55,11 +55,22 @@ function NavBar(props) {
   );
 }
 
+function Footer(props) {
+  return (
+  <footer>
+    <p>
+      <i>thank you heroku for hosting this website for free!</i>
+    </p>
+  </footer>
+  )
+}
+
 function App(props) {
   return (
    <div>
     <NavBar />
     <Routes />
+    <Footer />
    </div>
   );
 }
