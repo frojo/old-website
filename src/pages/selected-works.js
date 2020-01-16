@@ -13,7 +13,7 @@ const projects = [
     id: 'bloomfield',
     name: 'a summer afternoon in bloomfield',
     image_path: '/images/bloomfield-thumb.png',
-    link: 'https://frojo.itch.io/a-summer-afternoon-in-bloomfield',
+    link: '/bloomfield',
   },
   {
     id: 'haven',

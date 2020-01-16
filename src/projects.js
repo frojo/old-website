@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-function Secrets(props) {
+export function Secrets(props) {
   return (
     <div>
       <h1>what do you wish you could say?</h1>
@@ -20,5 +20,29 @@ function Secrets(props) {
     </div>
   )
 }
-export default Secrets
+
+export function Bloomfield(props) {
+  return (
+    <div>
+      <h1>a summer afternoon in bloomfield</h1>
+      <img className='project-main-image' src='/images/bloomfield-thumb.png' />
+      <p>Playable <a href='https://frojo.itch.io/a-summer-afternoon-in-bloomfield'>here</a>.</p>
+      <p>A love letter to my neighborhood. I lived in Bloomfield, Pittsburgh for 3 years and created this digital vignette to coney the feeling ofcomfort and love that I have for that street and the people that spend their time there. I designed the experience, wrote the dialogue, made the visual art and animation and programmed the AI and interactions.</p>
+      <p>Made with <a href='https://godotengine.org/'>Godot</a>.</p>
+    </div>
+  )
+}
+
+export function Haven(props) {
+  return (
+    <div>
+      <h1>Haven</h1>
+      <img className='project-main-image' src='/images/haven-poster.png' />
+      <p>Playable <a href='https://frojo.itch.io/haven'>here</a>.</p>
+      <p>A tiny teaser/prototype for a story game trying to reconcile my experience going to high school in a rich suburb in CT, seemingly unaffected by time.</p>
+      <p>Writing (storyboarding and dialogue) by <a href='https://www.slantmagazine.com/author/aeaker/'>Alex Eaker</a></p>
+      <p>Made with <a href='https://unity.com/'>Unity</a>.</p>
+    </div>
+  )
+}
 

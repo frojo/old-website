@@ -6,7 +6,10 @@ import {BrowserRouter as Router,
 import Info from './pages/info';
 import SelectedWorks from './pages/selected-works';
 import ProjectPage from './pages/project';
-import Secrets from './projects';
+import {Secrets, 
+	Bloomfield,
+	Haven,
+	Sail} from './projects';
 
 
 function Routes(props) {
@@ -19,6 +22,18 @@ function Routes(props) {
 
 	<Route path='/wdywycs'>
 	  <Secrets />
+	</Route>
+
+	<Route path='/bloomfield'>
+	  <Bloomfield />
+	</Route>
+
+	<Route path='/haven'>
+	  <Haven />
+	</Route>
+
+	<Route path='/selected-works'>
+	  <SelectedWorks />
 	</Route>
 
 	<Route path='/'>
