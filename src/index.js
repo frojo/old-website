@@ -58,9 +58,6 @@ function NavBar(props) {
 function Footer(props) {
   return (
   <footer>
-    <p>
-      <i>thank you heroku for hosting this website for free!</i>
-    </p>
   </footer>
   )
 }
