@@ -57,20 +57,69 @@ function ProjectList(props) {
     </li>
   )
   return <ul className='project-thumb-container'>{list_items}</ul>
+}
+
+// creates a Matter.Body for a project thumbnail
+// x and y is position on canvas
+function createFloatyProjThumb(project_info, x, y) {
+  
+  return Bodies.rectangle(x, y, 80, 80);
+
 
 }
+
+// initializes the floaty box interactable area
+// in the given world
+function initFloatyBoxArea(world, render) {
+  // set the bounds
+  // walls
+  let width = 800
+  let height = 600
+  let bounds_thickness = 1000
+  World.add(world, [
+    Bodies.rectangle(width/2, -bounds_thickness/2, width + bounds_thickness*2, bounds_thickness, { isStatic: true }), // top
+    Bodies.rectangle(width/2, height + bounds_thickness/2, width + bounds_thickness*2, bounds_thickness, { isStatic: true }), // bottom
+    Bodies.rectangle(-bounds_thickness/2, height/2, bounds_thickness, height + bounds_thickness, { isStatic: true }), // left
+    Bodies.rectangle(width + bounds_thickness/2, height/2, bounds_thickness, height + bounds_thickness*2, { isStatic: true }), // right
+  ])
+
+
+  var boxA = Bodies.rectangle(400, 200, 80, 80, {
+               render: {
+                 sprite: {
+                   texture: '/images/sail-thumb.png',
+                   xScale: 0.1,
+                   yScale: 0.1
+                 }
+               }
+             })
+
+  var boxB = Bodies.rectangle(450, 50, 80, 80);
+  // var ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true });
+  let allBodies = [boxA, boxB];
+
+  // let proj;
+  // for (var i = 0; i < projects.length; i++) {
+  //   let projBox = createFloatyProjThumb(projects[i], i*50, i*50);
+  //   allBodies.push(projBox);
+  // }
+
+  World.add(world, allBodies);
+  world.gravity.y = 0;
+  Body.applyForce(boxA, boxA.position, Vector.create(0, -.01));
+}
+
+
 
 class FloatyProjThumbArea extends React.Component {
   // const elm = <div class='canvas-container' />;
   // createFloatyBoxArea(props.width, props.height)
   //
   componentDidMount() {
-    const canvas_ref = this.refs.canvas
     var engine = Engine.create();
-    
     var render = Render.create({
 //       element: myRef.current,
-      canvas: canvas_ref,
+      canvas: this.refs.canvas,
       engine: engine,
       options: {
         background: '#ffffff',
@@ -78,30 +127,7 @@ class FloatyProjThumbArea extends React.Component {
       }
     });
 
-    console.log('canvas ref: ' + canvas_ref)
-
-    var boxA = Bodies.rectangle(400, 200, 80, 80, {
-                 render: {
-                   sprite: {
-                     texture: '/images/sail-thumb.png',
-                     xScale: 0.1,
-                     yScale: 0.1
-                   }
-                 }
-               })
-
-    var boxB = Bodies.rectangle(450, 50, 80, 80);
-    // var ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true });
-    let allBodies = [boxA, boxB];
-
-    // let proj;
-    // for (var i = 0; i < projects.length; i++) {
-    //   let projBox = createFloatyProjThumb(projects[i], i*50, i*50);
-    //   allBodies.push(projBox);
-    // }
-
-    World.add(engine.world, allBodies);
-    engine.world.gravity.y = 0;
+    initFloatyBoxArea(engine.world, render)
 
     let mouse = Mouse.create(render.canvas);
     let mouseConstraint = MouseConstraint.create(engine, {
@@ -127,7 +153,6 @@ class FloatyProjThumbArea extends React.Component {
     //   }
     // });
     // 
-    Body.applyForce(boxA, boxA.position, Vector.create(0, -.01));
     // Body.applyForce(boxB, boxB.position, Vector.create(0, -1));
     
     Engine.run(engine);
@@ -137,32 +162,13 @@ class FloatyProjThumbArea extends React.Component {
 
   }
   render() {
-    // const myRef = React.createRef();
-
     return <canvas ref='canvas' width={640} height={640} />
   }
 
 
 }
 
-// creates a Matter.Body for a project thumbnail
-// x and y is position on canvas
-function createFloatyProjThumb(project_info, x, y) {
-  
-  return Bodies.rectangle(x, y, 80, 80);
 
-
-}
-
-// make a floaty box interactable area object 
-// with the given width and height
-function createFloatyBoxArea(width, height) {
-  // set the canvas properties
-
-
-  return 
-
-}
 
 function SelectedWorks(props) {
   const floaty = true;
