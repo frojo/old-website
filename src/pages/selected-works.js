@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory, useLocation } from 'react-router-dom'
 import Matter from 'matter-js';
 
 let Engine = Matter.Engine,
@@ -11,6 +11,10 @@ let Engine = Matter.Engine,
       Events = Matter.Events,
       Mouse = Matter.Mouse,
       MouseConstraint = Matter.MouseConstraint;
+
+// some global variable to keep track of mouseClick
+let mouseClicked = false
+let clickedBody = 'none'
 
 // todo: generate this dynamically or whatever
 const projects = [
@@ -74,11 +78,13 @@ function createFloatyProjThumbAsync(world, proj, x, y) {
   // find the image's height and width in pixels
   let img = new Image()
   img.src = proj.image_path
-  img.onload = function () {
+  img.onload = (function(x,y) {
+    return function () {
     let ratio = img.width / img.height
     let box_width = box_height * ratio
     let scale = box_height / img.height
 
+    console.log('x = ' + x)
 
     console.log('height = ' + img.height)
     let box = Bodies.rectangle(x, y, box_width, box_height, {
@@ -90,9 +96,10 @@ function createFloatyProjThumbAsync(world, proj, x, y) {
                    }
                  }
                })
+    box.link = proj.link
   
     World.add(world, [box])
-  }
+  }})(x,y);
 
 }
 
@@ -132,9 +139,6 @@ function initFloatyBoxArea(world, render) {
                      { isStatic: true }),
   ])
 
-  var boxB = Bodies.rectangle(450, 50, 80, 80)
-  World.add(world, [boxB])
-
   let proj;
   for (var i = 0; i < projects.length; i++) {
     createFloatyProjThumbAsync(world, projects[i], i*50, i*50);
@@ -152,7 +156,6 @@ class FloatyProjThumbArea extends React.Component {
   componentDidMount() {
     var engine = Engine.create();
     var render = Render.create({
-//       element: myRef.current,
       canvas: this.refs.canvas,
       engine: engine,
       options: {
@@ -175,25 +178,21 @@ class FloatyProjThumbArea extends React.Component {
     World.add(engine.world, mouseConstraint);
     render.mouse = mouse;
 
-    // const history = useHistory();
-
-    // Events.on(mouseConstraint, 'mousedown', function(event) {
-    //   let hoveredBodies = Matter.Query.point(allBodies, mouse.position)
-    //   // history.push('/wdywycs')
-    //   if (hoveredBodies.length > 0) {
-    //     console.log(hoveredBodies[0].label + ' clicked!')
-    //   } else {
-    //     console.log('no bodies clicked');
-    //   }
-    // });
-    // 
-    // Body.applyForce(boxB, boxB.position, Vector.create(0, -1));
+    Events.on(mouseConstraint, 'mousedown', function(event) {
+      mouseClicked = true
+      // window.location.href = 'poop'
+      let body = mouseConstraint.body
+      if (body) {
+	clickedBody = body.label
+	console.log(mouseConstraint.body.label + ' clicked!')
+      }
+    })
+    Events.on(engine, 'tick', function(event) {
+      console.log('mouseClicked = ' + mouseClicked)
+    })
     
     Engine.run(engine);
-    
     Render.run(render);
-    
-
   }
   render() {
     return <canvas ref='canvas' width={640} height={640} />
@@ -215,8 +214,8 @@ function SelectedWorks(props) {
   }
   return(
     <div>
-      <h2>selected works</h2>
-      <p> <i> what follows are some projects that i've worked on. click on an image to find out more </i>
+      <h2>projects</h2>
+      <p> <i> click in a project for more info </i>
       </p>
       {projects}
     </div>
