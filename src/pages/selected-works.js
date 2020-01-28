@@ -59,41 +59,51 @@ function ProjectList(props) {
   return <ul className='project-thumb-container'>{list_items}</ul>
 }
 
+//     id: 'wdywycs',
+//     name: 'what do you wish you could say?',
+//     image_path: '/images/wdywycs-thumb.png',
+//     link: '/wdywycs',
+//   },
 // creates a Matter.Body for a project thumbnail
 // x and y is position on canvas
-function createFloatyProjThumb(project_info, x, y) {
+// this call is async (since it has to wait for the image to load)
+function createFloatyProjThumbAsync(world, proj, x, y) {
 
-  let height = 100
+  let box_height = 150
 
+  // find the image's height and width in pixels
   let img = new Image()
-
-  img.src = '/images/sail-thumb.png'
+  img.src = proj.image_path
   img.onload = function () {
+    let ratio = img.width / img.height
+    let box_width = box_height * ratio
+    let scale = box_height / img.height
+
+
     console.log('height = ' + img.height)
-  }
-
-
-
-
-  let box = Bodies.rectangle(x, y, 80, 80, {
-               render: {
-                 sprite: {
-                   texture: '/images/sail-thumb.png',
-                   xScale: 0.1,
-                   yScale: 0.1
+    let box = Bodies.rectangle(x, y, box_width, box_height, {
+                 render: {
+                   sprite: {
+                     texture: proj.image_path,
+                     xScale: scale,
+                     yScale: scale
+                   }
                  }
-               }
-             })
+               })
   
-  return box
+    World.add(world, [box])
+  }
 
 }
 
 // initializes the floaty box interactable area
 // in the given world
 function initFloatyBoxArea(world, render) {
+  let width = 800
+  let height = 600
+
   // set the bounds
-  // then end up looking like this:
+  // they end up looking like this:
   // ______________
   // |  ________  | 
   // | |        | |
@@ -102,41 +112,35 @@ function initFloatyBoxArea(world, render) {
   // |____________|
   //
 
-  let width = 800
-  let height = 600
   let bounds_thickness = 1000
   World.add(world, [
-    Bodies.rectangle(width/2, -bounds_thickness/2, width + bounds_thickness*2, bounds_thickness, { isStatic: true }), // top
-    Bodies.rectangle(width/2, height + bounds_thickness/2, width + bounds_thickness*2, bounds_thickness, { isStatic: true }), // bottom
-    Bodies.rectangle(-bounds_thickness/2, height/2, bounds_thickness, height + bounds_thickness, { isStatic: true }), // left
-    Bodies.rectangle(width + bounds_thickness/2, height/2, bounds_thickness, height + bounds_thickness*2, { isStatic: true }), // right
+    // top (aka dom)
+    Bodies.rectangle(width/2, -bounds_thickness/2, 
+                     width + bounds_thickness*2, bounds_thickness, 
+                     { isStatic: true }),
+    // bottom (aka sub)
+    Bodies.rectangle(width/2, height + bounds_thickness/2,
+                     width + bounds_thickness*2, bounds_thickness, 
+                     { isStatic: true }),
+    // left (aka big spoon)
+    Bodies.rectangle(-bounds_thickness/2, height/2, 
+                     bounds_thickness, height + bounds_thickness,
+                     { isStatic: true }),
+    // right (aka lil spoon)
+    Bodies.rectangle(width + bounds_thickness/2, height/2, 
+                     bounds_thickness, height + bounds_thickness*2, 
+                     { isStatic: true }),
   ])
 
-
-
-  var boxA = Bodies.rectangle(400, 200, 80, 80, {
-               render: {
-                 sprite: {
-                   texture: '/images/sail-thumb.png',
-                   xScale: 0.1,
-                   yScale: 0.1
-                 }
-               }
-             })
-
-  var boxB = Bodies.rectangle(450, 50, 80, 80);
-  // var ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true });
-  let allBodies = [boxA, boxB];
+  var boxB = Bodies.rectangle(450, 50, 80, 80)
+  World.add(world, [boxB])
 
   let proj;
   for (var i = 0; i < projects.length; i++) {
-    let projBox = createFloatyProjThumb(projects[i], i*50, i*50);
-    allBodies.push(projBox);
+    createFloatyProjThumbAsync(world, projects[i], i*50, i*50);
   }
 
-  World.add(world, allBodies);
   world.gravity.y = 0;
-  Body.applyForce(boxA, boxA.position, Vector.create(0, -.01));
 }
 
 
