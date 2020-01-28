@@ -71,16 +71,30 @@ function createFloatyProjThumb(project_info, x, y) {
 // initializes the floaty box interactable area
 // in the given world
 function initFloatyBoxArea(world, render) {
-  // set the bounds
-  // walls
   let width = 800
   let height = 600
+
+  // set the bounds
+
+
   let bounds_thickness = 1000
   World.add(world, [
-    Bodies.rectangle(width/2, -bounds_thickness/2, width + bounds_thickness*2, bounds_thickness, { isStatic: true }), // top
-    Bodies.rectangle(width/2, height + bounds_thickness/2, width + bounds_thickness*2, bounds_thickness, { isStatic: true }), // bottom
-    Bodies.rectangle(-bounds_thickness/2, height/2, bounds_thickness, height + bounds_thickness, { isStatic: true }), // left
-    Bodies.rectangle(width + bounds_thickness/2, height/2, bounds_thickness, height + bounds_thickness*2, { isStatic: true }), // right
+    // top (aka dom)
+    Bodies.rectangle(width/2, -bounds_thickness/2, 
+                     width + bounds_thickness*2, bounds_thickness, 
+                     { isStatic: true }),
+    // bottom (aka sub)
+    Bodies.rectangle(width/2, height + bounds_thickness/2,
+                     width + bounds_thickness*2, bounds_thickness, 
+                     { isStatic: true }),
+    // left (aka big spoon)
+    Bodies.rectangle(-bounds_thickness/2, height/2, 
+                     bounds_thickness, height + bounds_thickness,
+                     { isStatic: true }),
+    // right (aka lil spoon)
+    Bodies.rectangle(width + bounds_thickness/2, height/2, 
+                     bounds_thickness, height + bounds_thickness*2, 
+                     { isStatic: true }), // right
   ])
 
 
@@ -98,11 +112,11 @@ function initFloatyBoxArea(world, render) {
   // var ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true });
   let allBodies = [boxA, boxB];
 
-  // let proj;
-  // for (var i = 0; i < projects.length; i++) {
-  //   let projBox = createFloatyProjThumb(projects[i], i*50, i*50);
-  //   allBodies.push(projBox);
-  // }
+  let proj;
+  for (var i = 0; i < projects.length; i++) {
+    let projBox = createFloatyProjThumb(projects[i], i*50, i*50);
+    allBodies.push(projBox);
+  }
 
   World.add(world, allBodies);
   world.gravity.y = 0;
