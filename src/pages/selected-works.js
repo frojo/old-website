@@ -62,9 +62,30 @@ function ProjectList(props) {
 // creates a Matter.Body for a project thumbnail
 // x and y is position on canvas
 function createFloatyProjThumb(project_info, x, y) {
-  
-  return Bodies.rectangle(x, y, 80, 80);
 
+  let height = 100
+
+  let img = new Image()
+
+  img.src = '/images/sail-thumb.png'
+  img.onload = function () {
+    console.log('height = ' + img.height)
+  }
+
+
+
+
+  let box = Bodies.rectangle(x, y, 80, 80, {
+               render: {
+                 sprite: {
+                   texture: '/images/sail-thumb.png',
+                   xScale: 0.1,
+                   yScale: 0.1
+                 }
+               }
+             })
+  
+  return box
 
 }
 
@@ -72,7 +93,15 @@ function createFloatyProjThumb(project_info, x, y) {
 // in the given world
 function initFloatyBoxArea(world, render) {
   // set the bounds
-  // walls
+  // then end up looking like this:
+  // ______________
+  // |  ________  | 
+  // | |        | |
+  // | | canvas | |
+  // | |________| |
+  // |____________|
+  //
+
   let width = 800
   let height = 600
   let bounds_thickness = 1000
@@ -82,6 +111,7 @@ function initFloatyBoxArea(world, render) {
     Bodies.rectangle(-bounds_thickness/2, height/2, bounds_thickness, height + bounds_thickness, { isStatic: true }), // left
     Bodies.rectangle(width + bounds_thickness/2, height/2, bounds_thickness, height + bounds_thickness*2, { isStatic: true }), // right
   ])
+
 
 
   var boxA = Bodies.rectangle(400, 200, 80, 80, {
@@ -98,11 +128,11 @@ function initFloatyBoxArea(world, render) {
   // var ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true });
   let allBodies = [boxA, boxB];
 
-  // let proj;
-  // for (var i = 0; i < projects.length; i++) {
-  //   let projBox = createFloatyProjThumb(projects[i], i*50, i*50);
-  //   allBodies.push(projBox);
-  // }
+  let proj;
+  for (var i = 0; i < projects.length; i++) {
+    let projBox = createFloatyProjThumb(projects[i], i*50, i*50);
+    allBodies.push(projBox);
+  }
 
   World.add(world, allBodies);
   world.gravity.y = 0;
