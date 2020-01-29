@@ -13,8 +13,9 @@ let Engine = Matter.Engine,
       MouseConstraint = Matter.MouseConstraint;
 
 // some global variable to keep track of mouseClick
-let mouseClicked = false
-let clickedBody = 'none'
+let clickedBody
+let mousedownTime = 0
+let mousedownPos = {x: 0, y: 0}
 
 // todo: generate this dynamically or whatever
 const projects = [
@@ -179,17 +180,33 @@ class FloatyProjThumbArea extends React.Component {
     render.mouse = mouse;
 
     Events.on(mouseConstraint, 'mousedown', function(event) {
-      mouseClicked = true
       // window.location.href = 'poop'
       let body = mouseConstraint.body
       if (body) {
-	clickedBody = body.label
-	console.log(mouseConstraint.body.label + ' clicked!')
+	      clickedBody = body.label
+        mousedownTime = Date.now()
+        mousedownPos.x = mouse.position.x
+        mousedownPos.y = mouse.position.y
+	      console.log(mouseConstraint.body.label + ' mousedown!')
       }
     })
-    Events.on(engine, 'tick', function(event) {
-      console.log('mouseClicked = ' + mouseClicked)
+    Events.on(mouseConstraint, 'mouseup', function(event) {
+      // window.location.href = 'poop'
+      let mouseupPos = {x:0, y:0}
+      mouseupPos.x = mouse.position.x
+      mouseupPos.y = mouse.position.y
+      if (Date.now() - mousedownTime < 250 &&
+          mousedownPos.x == mouseupPos.x && 
+          mousedownPos.y == mouseupPos.y && 
+          clickedBody) {
+
+        console.log('clicked on ' + clickedBody)
+      }
+      clickedBody = undefined
     })
+    // Events.on(engine, 'tick', function(event) {
+    //   console.log('mouseClicked = ' + mouseClicked)
+    // })
     
     Engine.run(engine);
     Render.run(render);
