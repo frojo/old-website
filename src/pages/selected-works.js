@@ -151,9 +151,6 @@ function initFloatyBoxArea(world, render) {
 
 
 class FloatyProjThumbArea extends React.Component {
-  // const elm = <div class='canvas-container' />;
-  // createFloatyBoxArea(props.width, props.height)
-  //
   componentDidMount() {
     var engine = Engine.create();
     var render = Render.create({
@@ -179,34 +176,32 @@ class FloatyProjThumbArea extends React.Component {
     World.add(engine.world, mouseConstraint);
     render.mouse = mouse;
 
+
+    // register event callbacks for mouse_down and mouse_up
+    // this makes it so that you can click on a box, and it'll
+    // go to a link
     Events.on(mouseConstraint, 'mousedown', function(event) {
-      // window.location.href = 'poop'
       let body = mouseConstraint.body
       if (body) {
-	      clickedBody = body.label
+	      clickedBody = body
         mousedownTime = Date.now()
         mousedownPos.x = mouse.position.x
         mousedownPos.y = mouse.position.y
-	      console.log(mouseConstraint.body.label + ' mousedown!')
       }
     })
+
     Events.on(mouseConstraint, 'mouseup', function(event) {
-      // window.location.href = 'poop'
-      let mouseupPos = {x:0, y:0}
-      mouseupPos.x = mouse.position.x
-      mouseupPos.y = mouse.position.y
+      let mouseupPos = {x: mouse.position.x, y: mouse.position.y}
+
       if (Date.now() - mousedownTime < 250 &&
           mousedownPos.x == mouseupPos.x && 
           mousedownPos.y == mouseupPos.y && 
           clickedBody) {
 
-        console.log('clicked on ' + clickedBody)
+        // change the URL path to the project link
+        window.location.href = clickedBody.link
       }
-      clickedBody = undefined
     })
-    // Events.on(engine, 'tick', function(event) {
-    //   console.log('mouseClicked = ' + mouseClicked)
-    // })
     
     Engine.run(engine);
     Render.run(render);
