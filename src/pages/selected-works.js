@@ -145,7 +145,26 @@ function initFloatyBoxArea(world, render, width, height) {
 
 
 class FloatyProjThumbArea extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {weAreSilly: false}
+
+    this.getSilly = this.getSilly.bind(this)
+    this.getNotSilly = this.getNotSilly.bind(this)
+  }
+  getSilly() {
+    this.mouseConstraint.constraint.stiffness = 0.1
+
+    this.setState({weAreSilly: true})
+    // replace button
+  }
+  getNotSilly() {
+    this.mouseConstraint.constraint.stiffness = 0
+    this.setState({weAreSilly: false})
+    
+  }
   componentDidMount() {
+    this.setState({weAreSilly: false})
 
 
     var engine = Engine.create();
@@ -169,11 +188,13 @@ class FloatyProjThumbArea extends React.Component {
       constraint: {
         render: {
           visible: false
-        }
+        },
+	stiffness: 0
       }
     });
     World.add(engine.world, mouseConstraint);
     render.mouse = mouse;
+
 
 
     // register event callbacks for mouse_down and mouse_up
@@ -201,12 +222,27 @@ class FloatyProjThumbArea extends React.Component {
         window.location.href = clickedBody.link
       }
     })
-    
+
+    this.mouseConstraint = mouseConstraint
     Engine.run(engine);
     Render.run(render);
   }
+
   render() {
-    return <canvas ref='canvas' width={640} height={640} />
+    let button
+    const weAreSilly = this.state.weAreSilly
+    console.log('we are silly? ' + weAreSilly)
+    if (this.state.weAreSilly) {
+      button = <button onClick={this.getNotSilly}>enough silliness</button>
+    } else {
+      button = <button onClick={this.getSilly}>get silly</button>
+    }
+    return (
+      <div>
+	{button}
+	<canvas ref='canvas' width={640} height={640} />
+      </div>
+    )
   }
 
 
@@ -214,12 +250,13 @@ class FloatyProjThumbArea extends React.Component {
 
 
 
-class SelectedWorks extends React.Component {
+class Boobs extends React.Component {
   render() {
     const floaty = true;
     let projects;
 
 
+    
     if (floaty) {
       projects = <FloatyProjThumbArea width={window.innerWidth} height={600}/>
     } else {
@@ -235,5 +272,5 @@ class SelectedWorks extends React.Component {
     )
   }
 }
-export default SelectedWorks
+export default Boobs
 
