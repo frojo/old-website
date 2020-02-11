@@ -85,9 +85,6 @@ function createFloatyProjThumbAsync(world, proj, x, y) {
     let box_width = box_height * ratio
     let scale = box_height / img.height
 
-    console.log('x = ' + x)
-
-    console.log('height = ' + img.height)
     let box = Bodies.rectangle(x, y, box_width, box_height, {
                  render: {
                    sprite: {
@@ -106,10 +103,7 @@ function createFloatyProjThumbAsync(world, proj, x, y) {
 
 // initializes the floaty box interactable area
 // in the given world
-function initFloatyBoxArea(world, render) {
-  let width = 800
-  let height = 600
-
+function initFloatyBoxArea(world, render, width, height) {
   // set the bounds
   // they end up looking like this:
   // ______________
@@ -152,17 +146,22 @@ function initFloatyBoxArea(world, render) {
 
 class FloatyProjThumbArea extends React.Component {
   componentDidMount() {
+
+
     var engine = Engine.create();
     var render = Render.create({
       canvas: this.refs.canvas,
       engine: engine,
       options: {
         background: '#ffffff',
-        wireframes: false
+        wireframes: false,
+	width: this.props.width,
+	height: this.props.height
       }
     });
 
-    initFloatyBoxArea(engine.world, render)
+    console.log('props.width = ' + this.props.width)
+    initFloatyBoxArea(engine.world, render, this.props.width, this.props.height)
 
     let mouse = Mouse.create(render.canvas);
     let mouseConstraint = MouseConstraint.create(engine, {
@@ -194,8 +193,8 @@ class FloatyProjThumbArea extends React.Component {
       let mouseupPos = {x: mouse.position.x, y: mouse.position.y}
 
       if (Date.now() - mousedownTime < 250 &&
-          mousedownPos.x == mouseupPos.x && 
-          mousedownPos.y == mouseupPos.y && 
+          mousedownPos.x === mouseupPos.x && 
+          mousedownPos.y === mouseupPos.y && 
           clickedBody) {
 
         // change the URL path to the project link
@@ -215,23 +214,26 @@ class FloatyProjThumbArea extends React.Component {
 
 
 
-function SelectedWorks(props) {
-  const floaty = true;
-  let projects;
+class SelectedWorks extends React.Component {
+  render() {
+    const floaty = true;
+    let projects;
 
-  if (floaty) {
-    projects = <FloatyProjThumbArea />
-  } else {
-    projects = <ProjectList />
+
+    if (floaty) {
+      projects = <FloatyProjThumbArea width={window.innerWidth} height={600}/>
+    } else {
+      projects = <ProjectList />
+    }
+    return(
+      <div>
+        <h2>projects</h2>
+        <p> <i> click in a project for more info </i>
+        </p>
+        {projects}
+      </div>
+    )
   }
-  return(
-    <div>
-      <h2>projects</h2>
-      <p> <i> click in a project for more info </i>
-      </p>
-      {projects}
-    </div>
- )
 }
 export default SelectedWorks
 
