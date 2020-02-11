@@ -74,15 +74,17 @@ function ProjectList(props) {
 // this call is async (since it has to wait for the image to load)
 function createFloatyProjThumbAsync(world, proj, x, y) {
 
-  let box_height = 150
+  let box_height = 256
+  let box_width = 256
+  // let box_width = 256
 
   // find the image's height and width in pixels
   let img = new Image()
   img.src = proj.image_path
   img.onload = (function(x,y) {
     return function () {
-    let ratio = img.width / img.height
-    let box_width = box_height * ratio
+    // let ratio = img.width / img.height
+    // box_width = box_height * ratio
     let scale = box_height / img.height
 
     let box = Bodies.rectangle(x, y, box_width, box_height, {
@@ -98,6 +100,8 @@ function createFloatyProjThumbAsync(world, proj, x, y) {
   
     World.add(world, [box])
   }})(x,y);
+
+  return x + box_width
 
 }
 
@@ -135,8 +139,12 @@ function initFloatyBoxArea(world, render, width, height) {
   ])
 
   let proj;
+  let x = 10
+  let y = 10
+
   for (var i = 0; i < projects.length; i++) {
-    createFloatyProjThumbAsync(world, projects[i], i*50, i*50);
+    x = createFloatyProjThumbAsync(world, projects[i], x, y)
+    x += 10
   }
 
   world.gravity.y = 0;
