@@ -72,10 +72,10 @@ function ProjectList(props) {
 // creates a Matter.Body for a project thumbnail
 // x and y is position on canvas
 // this call is async (since it has to wait for the image to load)
-function createFloatyProjThumbAsync(world, proj, x, y) {
+function createFloatyProjThumbAsync(world, proj, x, y, height, width) {
 
-  let box_height = 256
-  let box_width = 256
+  // let box_height = 256
+  // let box_width = 256
   // let box_width = 256
 
   // find the image's height and width in pixels
@@ -85,9 +85,11 @@ function createFloatyProjThumbAsync(world, proj, x, y) {
     return function () {
     // let ratio = img.width / img.height
     // box_width = box_height * ratio
-    let scale = box_height / img.height
+    let scale = height / img.height
 
-    let box = Bodies.rectangle(x, y, box_width, box_height, {
+    console.log('y pos = ' + y)
+
+    let box = Bodies.rectangle(x, y, width, height, {
                  render: {
                    sprite: {
                      texture: proj.image_path,
@@ -101,7 +103,7 @@ function createFloatyProjThumbAsync(world, proj, x, y) {
     World.add(world, [box])
   }})(x,y);
 
-  return x + box_width
+  return x + width
 
 }
 
@@ -139,12 +141,21 @@ function initFloatyBoxArea(world, render, width, height) {
   ])
 
   let proj;
-  let x = 10
-  let y = 10
-
+  // remember, when positionining, the position is in the middle
+  // each square is 256x256px
+  // margins of 10 on every side
+  let box_height = 256
+  let box_width = 256
+  let x = 10 + box_width / 2
+  let y = 10 + box_height / 2
   for (var i = 0; i < projects.length; i++) {
-    x = createFloatyProjThumbAsync(world, projects[i], x, y)
+    x = createFloatyProjThumbAsync(world, projects[i], x, y, 
+      box_height, box_width)
     x += 10
+    if (x + box_width / 2 > width) {
+      y += box_width + 10
+      x = 10 + box_width / 2
+    }
   }
 
   world.gravity.y = 0;
