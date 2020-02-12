@@ -104,16 +104,15 @@ function createFloatyProjThumbAsync(world, proj, x, y, height, width, margin) {
     box.link = proj.link
     // box.render.visible = false
   
-    World.add(world, [box])
   }})(x,y,box);
 
-  return x + width
-
+  return box
 }
 
 // initializes the floaty box interactable area
 // in the given world
-function initFloatyBoxArea(world, render, width, height, box_width, margin) {
+function initFloatyBoxArea(world, render, width, height, 
+			   box_width, margin, proj_rows) {
   // set the bounds
   // they end up looking like this:
   // ______________
@@ -145,23 +144,24 @@ function initFloatyBoxArea(world, render, width, height, box_width, margin) {
   ])
 
   let proj;
-  // remember, when positionining, the position is in the middle
-  // each square is 256x256px
-  // margins of 10 on every side
+  let boxes = [];
   let box_height = box_width
-  let x = margin + box_width / 2
-  let y = margin + box_height / 2
   for (var i = 0; i < projects.length; i++) {
-    x = createFloatyProjThumbAsync(world, projects[i], x, y, 
+    let row = Math.floor(i / proj_rows)
+    let col = i % proj_rows
+    // remember, when positionining, 
+    // the position is for the center of the square
+    let x = margin + box_width / 2 + (box_width+margin)*col
+    let y = margin + box_height / 2 + (box_height+margin)*row
+    let box = createFloatyProjThumbAsync(world, projects[i], x, y, 
       box_height, box_width)
-    x += margin
-    if (x + box_width / 2 > width) {
-      y += box_width + margin
-      x = margin + box_width / 2
-    }
+    boxes.push(box)
   }
 
   world.gravity.y = 0;
+  World.add(world, boxes)
+
+  return boxes
 }
 
 
@@ -191,8 +191,7 @@ class FloatyProjThumbArea extends React.Component {
     let margin = 64
     let box_width = 256
     let canvas_width = Math.max(margin*2 + box_width, this.props.width - 20)
-    // TODO: GET THIS MATH RIGHT. PROBABLY HAVE TO ROUND OR TRUNC OR SOMETHING
-    let proj_cols = 1 // Math.floor((canvas_width - margin) / (box_width + margin))
+    let proj_cols = Math.floor((canvas_width - margin) / (box_width + margin))
     if (proj_cols === 0) {
       proj_cols = 1
     }
@@ -215,7 +214,7 @@ class FloatyProjThumbArea extends React.Component {
 
     console.log('props.width = ' + this.props.width)
     initFloatyBoxArea(engine.world, render, canvas_width, canvas_height, 
-		      box_width, margin)
+		      box_width, margin, proj_rows)
 
     let mouse = Mouse.create(render.canvas);
     let mouseConstraint = MouseConstraint.create(engine, {
