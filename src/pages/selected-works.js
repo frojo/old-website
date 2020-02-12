@@ -146,7 +146,7 @@ function initFloatyBoxArea(world, render, width, height,
   let proj;
   let boxes = [];
   let box_height = box_width
-  for (var i = 0; i < projects.length; i++) {
+  for (let i = 0; i < projects.length; i++) {
     let row = Math.floor(i / proj_rows)
     let col = i % proj_rows
     // remember, when positionining, 
@@ -170,6 +170,7 @@ class FloatyProjThumbArea extends React.Component {
   constructor(props) {
     super(props)
     this.state = {weAreSilly: false}
+    this.boxes = []
 
     this.getSilly = this.getSilly.bind(this)
     this.getNotSilly = this.getNotSilly.bind(this)
@@ -178,7 +179,12 @@ class FloatyProjThumbArea extends React.Component {
     this.mouseConstraint.constraint.stiffness = 0.1
 
     this.setState({weAreSilly: true})
-    // replace button
+    for (let i = 0; i < this.boxes.length; i++) {
+      console.log('box: ' + this.boxes[i])
+      let box = this.boxes[i]
+      Body.applyForce(box, box.position, 
+	{x: Math.random()*.1, y: Math.random()*.1})
+    }
   }
   getNotSilly() {
     this.mouseConstraint.constraint.stiffness = 0
@@ -213,7 +219,7 @@ class FloatyProjThumbArea extends React.Component {
     });
 
     console.log('props.width = ' + this.props.width)
-    initFloatyBoxArea(engine.world, render, canvas_width, canvas_height, 
+    this.boxes = initFloatyBoxArea(engine.world, render, canvas_width, canvas_height, 
 		      box_width, margin, proj_rows)
 
     let mouse = Mouse.create(render.canvas);
