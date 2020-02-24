@@ -4,6 +4,7 @@ import {BrowserRouter as Router,
 	Route
 } from 'react-router-dom';
 import Info from './pages/info';
+import Contact from './pages/contact';
 import SelectedWorks from './pages/selected-works';
 import ProjectPage from './pages/project';
 import {Secrets, 
@@ -34,6 +35,10 @@ function Routes(props) {
 
 	<Route path='/selected-works'>
 	  <SelectedWorks />
+	</Route>
+
+	<Route path='/contact'>
+	  <Contact />
 	</Route>
 
 	<Route path='/'>

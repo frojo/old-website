@@ -9,6 +9,7 @@ body {
 .navbar-name {
   font-size: 32px;
   /* display: inline; */
+  margin-right: 50px;
 
 }
 
@@ -43,3 +44,9 @@ body {
   height: 300px;
   width: auto;
 }
+
+/* 
+* {
+   border: 1px solid red !important;
+}
+*/

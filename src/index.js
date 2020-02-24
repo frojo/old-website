@@ -36,11 +36,16 @@ function SelectedWorksButton(props) {
   return <a className='navbar-item' href="selected-works">work</a>;
 }
 
+function ContactButton(props) {
+  return <a className='navbar-item' href="contact">contact</a>;
+}
+
 function Menu(props) {
   return (
     <span className='navbar-menu'>
       <SelectedWorksButton />
       <InfoButton />
+      <ContactButton />
     </span>
   )
   

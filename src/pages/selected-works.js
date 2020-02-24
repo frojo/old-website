@@ -303,7 +303,7 @@ class Boobs extends React.Component {
     return(
       <div>
         <h2>projects</h2>
-        <p> <i> click on a project for more info </i>
+        <p> <i> click on a thumbnail for more info </i>
         </p>
         {projects}
       </div>
