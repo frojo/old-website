@@ -25,14 +25,18 @@ body {
 }
 
 .project-thumb-container {
+  /* 
   display: flex;
   flex-wrap: wrap;
   list-style: none;
+  */
+  display: block;
 }
 
 .project-thumb {
-  height: 200px;
-  width: auto;
+  height: 150px;
+  width: 400px;
+  display: block;
 }
 
 .project-main-image {
