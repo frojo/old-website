@@ -22,24 +22,28 @@ const projects = [
   {
     id: 'wdywycs',
     name: 'what do you wish you could say?',
+    subtitle: 'An experiment in vulnerability.',
     image_path: '/images/wdywycs-thumb.png',
     link: '/wdywycs',
   },
   {
     id: 'bloomfield',
     name: 'a summer afternoon in bloomfield',
+    subtitle: 'a love letter to the neighborhood',
     image_path: '/images/bloomfield-thumb.png',
     link: '/bloomfield',
   },
   {
     id: 'haven',
     name: 'Haven',
+    subtitle: 'a town stuck in time',
     image_path: '/images/haven-thumb.png',
     link: '/haven',
   },
   {
     id: 'sail',
-    name: 'sail',
+    name: 'sail.p8',
+    subtitle: 'a 2-player sailing sim in pico 8',
     image_path: '/images/sail-thumb.png',
     link: '/sail',
   }
@@ -54,6 +58,7 @@ function ProjectThumb(props) {
 	    />
       <div className='project-thumb-text'>
 	<h2>{props.name}</h2>
+	<p>{props.subtitle}</p>
       </div>
     </div>
   )
@@ -64,7 +69,7 @@ function ProjectList(props) {
   // const projects = props.projects
   const list_items = projects.map((project) =>
       <a className='project-thumb-link' href={project.link}>
-	<ProjectThumb image_path={project.image_path} name={project.name} />
+	<ProjectThumb {...project} />
       </a>
   )
   return <div className='project-thumb-container'>{list_items}</div>
