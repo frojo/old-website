@@ -1,7 +1,12 @@
 
 body {
+  /* 
   font-family: 'Roboto', monospace;
+  */
+  font-family: Times;
 }
+
+
 
 .navbar {
 }
@@ -37,7 +42,8 @@ body {
   height: 150px;
   width: 600px;
   display: flex;
-  border: 2px dashed black;
+  border: 2px solid black;
+  margin: 8px;
   /* 
   flex-wrap: nowrap;
   */
@@ -45,17 +51,24 @@ body {
 
 .project-thumb-text {
   /* 
-  vertical-align: middle;
   */
   height: 150px;
   width: 450px; /* image is 150px */
-  align: middle;
   text-align: center;
+  vertical-align: middle;
+
+  /* get rid of link styles */
   
   /* uncomment this for auto-centering
    * https://css-tricks.com/centering-css-complete-guide/
    */
   /* margin: 0 auto; */
+}
+
+/* get rid of default link styling */
+.project-thumb-link {
+  text-decoration-line: inherit;
+  color: inherit;
 }
 
 .project-main-image {

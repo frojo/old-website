@@ -53,7 +53,7 @@ function ProjectThumb(props) {
 	    width='150px'
 	    />
       <div className='project-thumb-text'>
-	<h3>{props.name}</h3>
+	<h2>{props.name}</h2>
       </div>
     </div>
   )
@@ -63,7 +63,7 @@ function ProjectThumb(props) {
 function ProjectList(props) {
   // const projects = props.projects
   const list_items = projects.map((project) =>
-      <a href={project.link}>
+      <a className='project-thumb-link' href={project.link}>
 	<ProjectThumb image_path={project.image_path} name={project.name} />
       </a>
   )
