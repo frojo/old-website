@@ -52,13 +52,13 @@ const projects = [
 function ProjectThumb(props) {
   return (
     <div className='project-thumb'>
-      <img  src={props.image_path} 
+      <img src={props.image_path} 
 	    height='150px'
 	    width='150px'
-	    />
+	    >
+      </img>
       <div className='project-thumb-text'>
-	<h2>{props.name}</h2>
-	<p>{props.subtitle}</p>
+	<h3>{props.name}</h3>
       </div>
     </div>
   )
