@@ -49,10 +49,12 @@ function ProjectThumb(props) {
   return (
     <div className='project-thumb'>
       <img  src={props.image_path} 
-	    alt={props.alt}
-	    height='150'
-	    width='150'
+	    height='150px'
+	    width='150px'
 	    />
+      <div className='project-thumb-text'>
+	<h3>{props.name}</h3>
+      </div>
     </div>
   )
 
@@ -62,7 +64,7 @@ function ProjectList(props) {
   // const projects = props.projects
   const list_items = projects.map((project) =>
       <a href={project.link}>
-	<ProjectThumb image_path={project.image_path} alt={project.name} />
+	<ProjectThumb image_path={project.image_path} name={project.name} />
       </a>
   )
   return <div className='project-thumb-container'>{list_items}</div>

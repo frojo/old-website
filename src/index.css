@@ -35,8 +35,27 @@ body {
 
 .project-thumb {
   height: 150px;
-  width: 400px;
-  display: block;
+  width: 600px;
+  display: flex;
+  border: 2px dashed black;
+  /* 
+  flex-wrap: nowrap;
+  */
+}
+
+.project-thumb-text {
+  /* 
+  vertical-align: middle;
+  */
+  height: 150px;
+  width: 450px; /* image is 150px */
+  align: middle;
+  text-align: center;
+  
+  /* uncomment this for auto-centering
+   * https://css-tricks.com/centering-css-complete-guide/
+   */
+  /* margin: 0 auto; */
 }
 
 .project-main-image {
@@ -49,8 +68,7 @@ body {
   width: auto;
 }
 
-/* 
+/* uncomment for debugging
 * {
    border: 1px solid red !important;
-}
-*/
+} */
