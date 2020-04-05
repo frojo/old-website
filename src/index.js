@@ -69,7 +69,7 @@ function Footer(props) {
 
 function App(props) {
   return (
-   <div>
+   <div className="page">
     <NavBar />
     <Routes />
     <Footer />

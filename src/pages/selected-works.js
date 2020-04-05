@@ -22,7 +22,7 @@ const projects = [
   {
     id: 'wdywycs',
     name: 'what do you wish you could say?',
-    subtitle: 'An experiment in vulnerability.',
+    subtitle: 'an experiment in vulnerability',
     image_path: '/images/wdywycs-thumb.png',
     link: '/wdywycs',
   },
@@ -53,12 +53,13 @@ function ProjectThumb(props) {
   return (
     <div className='project-thumb'>
       <img src={props.image_path} 
-	    height='150px'
-	    width='150px'
+	    height='180px'
+	    width='180px'
 	    >
       </img>
       <div className='project-thumb-text'>
 	<h3>{props.name}</h3>
+	<p><i>{props.subtitle}</i></p>
       </div>
     </div>
   )
@@ -79,9 +80,6 @@ class Projects extends React.Component {
   render() {
     return(
       <div>
-        <h2>projects</h2>
-        <p> <i> click on a thumbnail for more info </i>
-        </p>
 	<ProjectList />
       </div>
     )
