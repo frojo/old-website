@@ -35,6 +35,7 @@ h3 {
 
 .navbar {
   margin: 32px;
+  margin-left: 16px;
 }
 
 .navbar-name {
@@ -48,7 +49,8 @@ h3 {
 }
 
 .navbar-name:hover {
-  background: black;
+  color: red;
+  background: red;
 }
 
 .navbar-menu {
@@ -84,7 +86,7 @@ h3 {
 .project-thumb {
   height: 180px;
   width: 600px;
-  border: 2px hidden black;
+  border: 2px dashed black;
   margin: 16px;
 
   /* how the children are displayed */
@@ -95,7 +97,11 @@ h3 {
 }
 
 .project-thumb:hover {
+  /* 
   border: 2px dashed black;
+  color: red;
+  background: red;
+  */
 }
 
 .project-thumb-text {

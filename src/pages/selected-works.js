@@ -49,20 +49,70 @@ const projects = [
   }
 ]
 
-function ProjectThumb(props) {
-  return (
-    <div className='project-thumb'>
-      <img src={props.image_path} 
-	    height='180px'
-	    width='180px'
-	    >
-      </img>
-      <div className='project-thumb-text'>
-	<h3>{props.name}</h3>
-	<p><i>{props.subtitle}</i></p>
+class ProjectThumb extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {isMouseHovering: false};
+
+    this.color = '#FF0000';
+
+    this.mouseEnter = this.mouseEnter.bind(this);
+    this.mouseLeave = this.mouseLeave.bind(this);
+  }
+
+  // hide the image and text and change the color?
+  mouseEnter() {
+    this.setState(state => ({
+      isMouseHovering: true
+    }));
+  }
+
+  mouseLeave() {
+    this.setState(state => ({
+      isMouseHovering: false
+    }));
+  }
+  
+  render() {
+    const isHovering = this.state.isMouseHovering;
+
+    const image = (
+	<img src={this.props.image_path} 
+	      height='180px'
+	      width='180px'
+	      border='0px solid black'
+	      >
+	</img>
+    )
+    const text = (
+	<div className='project-thumb-text'>
+	  <h3>{this.props.name}</h3>
+	  <p><i>{this.props.subtitle}</i></p>
+	</div>
+    )
+
+    const solidFillStyle = {
+      backgroundColor: 'black',
+      width: 'inherit',
+      height: 'inherit',
+    };
+
+    const solidCol = (
+      <div style={solidFillStyle}>
       </div>
-    </div>
-  )
+    )
+
+    return (
+      <div className='project-thumb' 
+	   onMouseEnter={this.mouseEnter}
+	   onMouseLeave={this.mouseLeave}>
+	{isHovering ? null : image}
+	{isHovering ? null : text}
+	{isHovering ? solidCol : null }
+      </div>
+    )
+  };
 
 }
 
