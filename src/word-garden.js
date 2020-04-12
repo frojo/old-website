@@ -362,7 +362,6 @@ export default function word_garden (p) {
   
     // if water is on a stalk, it continues to grow the plant
     if (underThis && underThis.text == 'stalk') {
-     p.print('grow grow');
       let stalk = underThis;
       stalk.plant.grow();
     }
