@@ -6,11 +6,16 @@ import {BrowserRouter as Router,
 import Info from './pages/info';
 import Contact from './pages/contact';
 import SelectedWorks from './pages/selected-works';
+import Blog from './pages/blog';
+import BlogPost from './pages/blogpost';
 import ProjectPage from './pages/project';
 import {Secrets, 
 	Bloomfield,
 	Haven,
-	Sail} from './projects';
+	Sail,
+	WordGarden} from './projects';
+import {WordGardenBlog
+	} from './blogposts';
 
 
 function Routes(props) {
@@ -21,6 +26,17 @@ function Routes(props) {
 	  <Info />
 	</Route>
 
+
+	<Route path='/selected-works'>
+	  <SelectedWorks />
+	</Route>
+
+	<Route path='/contact'>
+	  <Contact />
+	</Route>
+
+
+	// projects
 	<Route path='/wdywycs'>
 	  <Secrets />
 	</Route>
@@ -33,12 +49,17 @@ function Routes(props) {
 	  <Haven />
 	</Route>
 
-	<Route path='/selected-works'>
-	  <SelectedWorks />
+	<Route path='/word-garden'>
+	  <WordGarden />
+	</Route>
+    
+	// blog posts
+	<Route path='/word-garden-blog'>
+	  <WordGardenBlog />
 	</Route>
 
-	<Route path='/contact'>
-	  <Contact />
+	<Route path='/blog'>
+	  <Blog />
 	</Route>
 
 	<Route path='/'>

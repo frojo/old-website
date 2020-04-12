@@ -40,15 +40,19 @@ function ContactButton(props) {
   return <a className='navbar-item' href="contact">contact</a>;
 }
 
+function BlogButton(props) {
+  return <a className='navbar-item' href="blog">blog</a>;
+}
+
 function Menu(props) {
   return (
     <span className='navbar-menu'>
       <SelectedWorksButton />
+      <BlogButton />
       <InfoButton />
       <ContactButton />
     </span>
   )
-  
 }
 
 function NavBar(props) {

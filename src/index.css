@@ -6,6 +6,12 @@ body {
   font-family: Times;
 }
 
+::selection {
+  background: black;
+  color: white;
+  text-shadow: none;
+}
+
 h1, h2, h3 {
   display: block;
   margin: 0;
@@ -20,13 +26,19 @@ a {
 }
 
 h2 {
-  margin-top: 8px;
+  margin-top: 24px;
   margin-bottom: 8px;
+  font-size: 26px;
 }
 
 h3 {
   font-size: 24px;
 }
+
+p {
+  font-size: 18px;
+}
+
 
 .page {
   width: 800px;
@@ -49,8 +61,7 @@ h3 {
 }
 
 .navbar-name:hover {
-  color: red;
-  background: red;
+  background: black;
 }
 
 .navbar-menu {
@@ -89,7 +100,7 @@ h3 {
   border: 2px dashed black;
   margin: 16px;
 
-  /* how the children are displayed */
+  /* get alignment right */
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
@@ -139,6 +150,14 @@ h3 {
 .project-image {
   height: 300px;
   width: auto;
+}
+
+.blogpost {
+
+}
+
+.blogpost {
+
 }
 
 /* uncomment for debugging

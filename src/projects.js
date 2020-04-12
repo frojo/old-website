@@ -1,5 +1,6 @@
 import React from 'react'
-
+import P5Wrapper from 'react-p5-wrapper';
+import word_garden from './word-garden';
 
 export function Secrets(props) {
   return (
@@ -46,3 +47,12 @@ export function Haven(props) {
   )
 }
 
+export function WordGarden(props) {
+  return (
+    <div>
+      <div id='toolbar'></div>
+      <div id='sketch-holder'></div>
+      <P5Wrapper sketch={word_garden} />
+    </div>
+  )
+}

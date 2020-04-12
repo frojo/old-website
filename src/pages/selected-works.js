@@ -1,21 +1,5 @@
 import React from 'react'
 import { Link, useHistory, useLocation } from 'react-router-dom'
-import Matter from 'matter-js';
-
-let Engine = Matter.Engine,
-      Render = Matter.Render,
-      World = Matter.World,
-      Bodies = Matter.Bodies,
-      Body = Matter.Body,
-      Vector = Matter.Vector,
-      Events = Matter.Events,
-      Mouse = Matter.Mouse,
-      MouseConstraint = Matter.MouseConstraint;
-
-// some global variable to keep track of mouseClick
-let clickedBody
-let mousedownTime = 0
-let mousedownPos = {x: 0, y: 0}
 
 // todo: generate this dynamically or whatever
 const projects = [
