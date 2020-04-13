@@ -51,8 +51,8 @@ export function WordGarden(props) {
   return (
     <div>
       <h1>word garden </h1>
-      <p>a little toy. grow a plant or ten </p>
-      <p>too many words on screen makes it go very slow so be gentle</p>
+      <p>a little toy. grow a couple flowers </p>
+      <p>too many words on screen makes it go very slow so please be gentle</p>
       <div id='toolbar'></div>
       <div id='sketch-holder'></div>
       <P5Wrapper sketch={word_garden} />
