@@ -28,13 +28,13 @@ export function WordGardenBlog(props) {
     <p>Words also have the convenient property of fitting neatly into axis-parallel rectangles, which makes them easy for being used in a simple physics simulations. p5.js has this built-in function for getting the bounding box (LINK) of any string of text.</p>
     <p>The idea of composing text to convey meaning visually in digital media is not new (LINK), but besides some recent work, there aren't many examples of interactive work for drawing or building visual forms out of text. (LINKS to karina popp, pen, memory, fernando class?). In some ways, these are just really weird Microsoft Words.</p>
 
-    <h2>technical notes</h2>
+    <h2>reflection</h2>
 
     <p>This is made in vanilla p5.js (no addons/libraries). The code is here (LINK).</p>
 
     <p>Since the main physics loop is in Javascript, and since I didn't really try to optimize it at all, having more than ~10 words on screen makes it *chug*.</p>
 
-    <p>There's tons of obvious improvements and polish for it (e.g. make the UI even a little pretty, be able to handle more than 10 words, more than literally 1 plant) but I'm happy with what it is. I got what I needed from it.</p>
+    <p>There's a few things I'd add if I cared enough. I wish there were more types of plants, and that the UI was even a little pretty, be able to handle more words on screen without slowing dow. But I'm happy with what it is. I got what I needed from it.</p>
 
     <p>Be gentle with it and enjoy!</p>
 
