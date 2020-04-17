@@ -6,10 +6,32 @@ body {
   font-family: Times;
 }
 
+/* 
 ::selection {
   background: rgba(0, 0, 0, .99);
   color: white;
   text-shadow: none;
+}
+
+.experiment {
+  background: rgba(0, 0, 0, .99);
+  color: black;
+}
+
+.experiment::selection {
+  background: rgba(255, 255, 255, .99);
+  color: black;
+}
+*/
+
+:active {
+  background: rgba(0, 0, 0, .99999);
+  color: black;
+}
+
+::selection {
+  background: rgba(255, 255, 255, .995);
+  color: black;
 }
 
 h1, h2, h3 {
