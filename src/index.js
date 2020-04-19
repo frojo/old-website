@@ -47,10 +47,9 @@ function BlogButton(props) {
 function Menu(props) {
   return (
     <span className='navbar-menu'>
+      <InfoButton />
       <SelectedWorksButton />
       <BlogButton />
-      <InfoButton />
-      <ContactButton />
     </span>
   )
 }

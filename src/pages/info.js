@@ -4,10 +4,18 @@ import React from 'react';
 function InfoPage(props) {
   return (
     <div>
-      <h2>about my work</h2>
-      <i>in this section, i attempt to string together English words to make sense of why my mind and body do the things they do</i>
-    <p>I make interactive spaces and narratives that are grounded in my lived experience. My work celebrates the detail and aesthetics of everyday existence by providing spaces to explore and play that enkindle an appreciation for our shared reality. This often takes on the form of an <a href='bloomfield'>experimental</a> <a href='/haven'>videogame</a> or a designed <a href='/wdywycs'>space</a> or performance.</p>
-    <p>Thematically, my practice values immediate, visceral human experience. After spending time in institutions that wield the immense power of technology without examining its effects critically, I am intimate with the individual and societal loneliness and cynicism that this causes. In engaging with the complexity and discomfort of my own emotions, I make, not to try to "solve" the harshness of our existence, but to pay closer attention and recognize the beauty in it.</p>
+      <h2>about</h2>
+      <p> Francisco makes interactive spaces and narratives that are grounded in his lived experience. His work celebrates the detail and aesthetics of everyday existence by providing spaces to explore and play that enkindle an appreciation for our shared reality. This has taken the form of experimental videogames, but also designed space/performance. </p>
+    <p> Fran plans on putting up a CV here, with a concrete list of things he's done, but he hasn't gotten around to it yet. </p>
+
+
+	<p>
+	  <a href='mailto:franmorojo@gmail.com'>email</a>
+	  <b> | </b>
+	  <a href='https://twitter.com/franmorojo'>twitter</a>
+	  <b> | </b>
+	  <a href='https://www.instagram.com/auxisnarf/'>instagram</a>
+	</p>
 
     {/* 
   return <a className='navbar-name' href="/">francisco rojo</a>;

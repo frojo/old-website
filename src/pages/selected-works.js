@@ -29,7 +29,7 @@ const projects = [
     name: 'sail.p8',
     subtitle: 'a 2-player sailing sim in pico 8',
     image_path: '/images/sail-thumb.png',
-    link: '/sail',
+    link: 'https://frojo.github.io/',
   }
 ]
 
