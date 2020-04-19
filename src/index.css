@@ -119,6 +119,10 @@ p {
 }
 
 .project-thumb:hover {
+  background: black;
+}
+
+.project-thumb:hover {
   /* 
   border: 2px dashed black;
   color: red;
